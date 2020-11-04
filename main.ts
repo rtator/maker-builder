@@ -28,6 +28,10 @@ scene.onOverlapTile(SpriteKind.Player, myTiles.tile1, function (sprite, location
         tiles.setTileAt(location, myTiles.transparency16)
     }
 })
+let wantsongon = false
+if (game.ask("want a song?")) {
+    wantsongon = true
+}
 tiles.setTilemap(tiles.createTilemap(hex`1e000a00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010101010101010101010101010101010101010101010101010101010101`, img`
     . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
@@ -61,3 +65,16 @@ let mySprite = sprites.create(img`
 controller.moveSprite(mySprite)
 scene.cameraFollowSprite(mySprite)
 scene.setBackgroundColor(9)
+forever(function () {
+    if (wantsongon) {
+        music.playMelody("C D E F E D C C ", 120)
+        pause(500)
+        music.playMelody("E F G A G F E E ", 120)
+        pause(500)
+        for (let index = 0; index < 2; index++) {
+            music.playMelody("- - C C - - C C ", 120)
+        }
+        music.playMelody("C C D D E E F F ", 120)
+        music.playMelody("E D C - - - - - ", 120)
+    }
+})
